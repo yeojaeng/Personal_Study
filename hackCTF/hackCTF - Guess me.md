@@ -59,3 +59,30 @@ HackCTF 의 **Guess me** 문제이다.
 >`ctf.j0n9hyun.xyz:2030/?filename=1&guess=`
 >
 >![image](https://user-images.githubusercontent.com/33051018/69026958-6fd1db00-0a10-11ea-9740-a188cbbadcb4.png)
+
+
+
+### 배운점
+
+---
+
+>#### php - `extract` vulnerability
+>
+>`extract`함수에 `$_GET` 또는 `$_POST`를 통해 인자를 넘긴다면, 
+>
+>넘기는 파라미터와 값을 변수와 그 초기값으로 설정할 수 있다.
+>
+>즉, 기존값을 **Overwrite**할 수 있다.
+>
+>하지만, 이를 위해서는 공격자가 내부 변수명을 정확히 알고 있어야 하며
+>
+> `extract`이후 변수를 재정의하는 코드가 존재할 경우, 이는 공격에 이용되기 어렵다.
+>
+>
+>
+>
+>#### 대응방안
+>
+>1. 변수를 선언하기 이전에 `extract`함수를 사용한다.
+>2. `extract` 함수 사용시 **EXTR_SKIP** 옵션을 이용한다.
+>   ( EXTR_SKIP : 기존 변수와의 충돌이 생길 경우, 기존 변수를 덮어쓰지 않도록 해준다. )
