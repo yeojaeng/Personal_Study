@@ -69,9 +69,9 @@ Hello AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 이후 `s`변수를 출력한다.
 
-`s`변수는 `rbp-0x110`에 위치하며 `scanf`함수를 통해 입력을 받기 때문에 `BOF` 취약점이 존재한다.
+`s`변수는 메인함수의 베이스포인터인  `rbp`로 부터 `0x110`만큼 떨어진 곳에 위치하며 `scanf`함수를 통해 입력을 받기 때문에 `BOF` 취약점이 존재한다.
 
-이를통해 `scanf`함수가 끝난뒤 복귀하는 시점의 `return address`를 덮어씌울수 있다.
+이를 통해 `main`함수가 끝날때 돌아가는 `return address`를 덮을 수 있다.
 
 여기서 `return address`를 덮어씌우기 위해 쉘을 실행시켜줄만한 무언가가 필요한데, 
 
